@@ -1,53 +1,451 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Jackie Wang</title>
-    <meta charset="UTF-8">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 800px;
-            margin: auto;
-            padding: 40px;
-            line-height: 1.6;
-            background-color: #f9f9f9;
-        }
-        h1 {
-            color: #222;
-        }
-        h2 {
-            margin-top: 40px;
-        }
-        .project {
-            margin-bottom: 20px;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jackie Wang | Portfolio</title>
+  <meta name="description" content="Jackie Wang — Physics student focused on engineering, research, and computational modeling." />
+
+  <style>
+    :root{
+      --bg: #0b1020;
+      --card: rgba(255,255,255,0.08);
+      --card2: rgba(255,255,255,0.06);
+      --text: rgba(255,255,255,0.92);
+      --muted: rgba(255,255,255,0.70);
+      --muted2: rgba(255,255,255,0.55);
+      --line: rgba(255,255,255,0.12);
+      --accent: #7c5cff;
+      --accent2:#22d3ee;
+      --shadow: 0 18px 55px rgba(0,0,0,0.35);
+      --radius: 18px;
+      --max: 1040px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0}
+    body{
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      background: radial-gradient(1200px 800px at 15% 20%, rgba(124,92,255,0.25), transparent 60%),
+                  radial-gradient(900px 700px at 85% 35%, rgba(34,211,238,0.20), transparent 55%),
+                  radial-gradient(800px 700px at 50% 100%, rgba(255,255,255,0.06), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px 80px}
+    .nav{
+      position: sticky;
+      top: 12px;
+      z-index: 9;
+      margin: 12px auto 0;
+      backdrop-filter: blur(14px);
+      background: rgba(15, 20, 40, 0.45);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 10px 12px;
+    }
+    .brand{
+      display:flex;gap:10px;align-items:center;padding-left:6px;
+      font-weight:700;letter-spacing:0.2px
+    }
+    .dot{
+      width:10px;height:10px;border-radius:99px;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 18px rgba(124,92,255,0.55);
+    }
+    .links{display:flex;gap:10px;flex-wrap:wrap}
+    .pill{
+      padding:8px 12px;border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 14px;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .pill:hover{
+      transform: translateY(-1px);
+      background: rgba(255,255,255,0.08);
+      border-color: rgba(255,255,255,0.20);
+      color: var(--text);
+    }
+
+    .hero{
+      margin-top: 34px;
+      display:grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .card{
+      background: linear-gradient(180deg, var(--card), var(--card2));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .hero-left{padding: 30px}
+    .kicker{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:6px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+    .spark{
+      width: 8px;height:8px;border-radius:99px;
+      background: var(--accent2);
+      box-shadow: 0 0 18px rgba(34,211,238,0.55);
+    }
+    h1{
+      margin: 0 0 10px 0;
+      font-size: 44px;
+      line-height: 1.12;
+      letter-spacing: -0.6px;
+    }
+    .subtitle{color: var(--muted); font-size: 16px; margin: 0 0 18px 0}
+    .cta-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.06);
+      color: var(--text);
+      font-weight: 600;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,0.10); border-color: rgba(255,255,255,0.22)}
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #071019;
+      box-shadow: 0 12px 28px rgba(124,92,255,0.28);
+    }
+
+    .hero-right{
+      padding: 22px;
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .mini{
+      padding: 16px;
+      border-radius: 14px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+    }
+    .mini h3{margin:0 0 6px 0;font-size:14px;color:var(--muted)}
+    .mini p{margin:0;color:var(--text);font-weight:700}
+    .avatar{
+      display:flex;align-items:center;gap:12px;
+      padding: 16px;
+      border-radius: 14px;
+      border:1px dashed rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.03);
+    }
+    .pfp{
+      width:44px;height:44px;border-radius:14px;
+      background: linear-gradient(135deg, rgba(124,92,255,0.9), rgba(34,211,238,0.85));
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;color:#071019;
+    }
+    .avatar .name{font-weight:800}
+    .avatar .meta{color:var(--muted2);font-size:13px;margin-top:2px}
+
+    .section{margin-top: 26px}
+    .section h2{
+      font-size: 18px;
+      margin: 0 0 12px 0;
+      letter-spacing: 0.2px;
+      color: rgba(255,255,255,0.88);
+    }
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .col-6{grid-column: span 6}
+    .col-4{grid-column: span 4}
+    .col-12{grid-column: span 12}
+
+    .box{padding: 18px}
+    .muted{color: var(--muted)}
+    .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .tag{
+      font-size: 12px;
+      color: rgba(255,255,255,0.82);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .proj{
+      padding: 18px;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+      transition: transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+    .proj:hover{
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.24);
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+    }
+    .proj .top{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:12px
+    }
+    .proj h3{margin:0;font-size:16px}
+    .proj p{margin:0;color:var(--muted);font-size:14px}
+    .proj .meta{display:flex;gap:8px;flex-wrap:wrap}
+    .badge{
+      font-size: 12px;
+      color: rgba(255,255,255,0.78);
+      padding: 5px 9px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.03);
+    }
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px}
+    .linkbtn{
+      font-size: 13px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.16);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.88);
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      display:inline-flex;align-items:center;gap:8px;
+    }
+    .linkbtn:hover{transform: translateY(-1px); background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.22)}
+    footer{margin-top:34px;color:var(--muted2);font-size:13px;text-align:center}
+
+    @media (max-width: 920px){
+      .hero{grid-template-columns: 1fr}
+      h1{font-size: 38px}
+      .col-6{grid-column: span 12}
+      .col-4{grid-column: span 12}
+    }
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
 
-<h1>Jackie Wang</h1>
-<p>Physics Student | Engineering | Research</p>
+    <!-- NAV -->
+    <div class="nav">
+      <div class="brand">
+        <span class="dot"></span>
+        <span>Jackie Wang</span>
+      </div>
+      <div class="links">
+        <a class="pill" href="#about">About</a>
+        <a class="pill" href="#projects">Projects</a>
+        <a class="pill" href="#experience">Experience</a>
+        <a class="pill" href="#contact">Contact</a>
+        <!-- Replace with your links -->
+        <a class="pill" href="https://github.com/Jackie-wang1209" target="_blank" rel="noreferrer">GitHub</a>
+        <a class="pill" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+      </div>
+    </div>
 
-<h2>Projects</h2>
+    <!-- HERO -->
+    <div class="hero">
+      <div class="card hero-left">
+        <div class="kicker"><span class="spark"></span> Portfolio / Research / Engineering</div>
+        <h1>Physics + Engineering.<br/>Building real projects.</h1>
+        <p class="subtitle">
+          I’m a physics student interested in computational modeling, hardware systems, and applied engineering.
+          This site highlights my projects, experiments, and technical work.
+        </p>
 
-<div class="project">
-    <h3>2D Vortex Panel CFD</h3>
-    <p>Computational aerodynamics simulation using Python.</p>
-</div>
+        <div class="cta-row">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#contact">Contact</a>
+          <a class="btn" href="#" target="_blank" rel="noreferrer">Download Resume (PDF)</a>
+        </div>
+      </div>
 
-<div class="project">
-    <h3>Water Level Detection System</h3>
-    <p>Electronic threshold control circuit design.</p>
-</div>
+      <div class="card hero-right">
+        <div class="avatar">
+          <div class="pfp">JW</div>
+          <div>
+            <div class="name">Jackie Wang</div>
+            <div class="meta">Physics Student · Engineering · Research</div>
+          </div>
+        </div>
 
-<h2>Contact</h2>
-<p>Email: your@email.com</p>
-<p>GitHub: github.com/Jackie-wang1209</p>
+        <div class="mini">
+          <h3>Focus</h3>
+          <p>CFD · Modeling · Hardware Systems</p>
+        </div>
 
+        <div class="mini">
+          <h3>Location</h3>
+          <p>United States</p>
+        </div>
+
+        <div class="mini">
+          <h3>Open to</h3>
+          <p>Internships · Research · Projects</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ABOUT / SKILLS -->
+    <div class="section" id="about">
+      <h2>About</h2>
+      <div class="grid">
+        <div class="card box col-6">
+          <p class="muted" style="margin:0">
+            <!-- Replace this paragraph -->
+            I enjoy turning physics and math into working systems: simulations, models, and real prototypes.
+            Recently I’ve been working on computational aerodynamics (panel methods) and embedded-style sensing/control projects.
+          </p>
+          <div class="tags">
+            <span class="tag">Physics</span>
+            <span class="tag">Python</span>
+            <span class="tag">Numerical Methods</span>
+            <span class="tag">CAD / Prototyping</span>
+            <span class="tag">Data Analysis</span>
+          </div>
+        </div>
+
+        <div class="card box col-6">
+          <div class="muted" style="font-size:13px;margin-bottom:8px">Core Skills</div>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">CFD / Aero</span>
+            <span class="tag">Linear Algebra</span>
+            <span class="tag">Optimization</span>
+            <span class="tag">Git / GitHub</span>
+            <span class="tag">Electronics</span>
+            <span class="tag">Technical Writing</span>
+          </div>
+          <div class="muted" style="margin-top:12px;font-size:13px">
+            Tip: later we can add icons, project screenshots, and a PDF resume link.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS -->
+    <div class="section" id="projects">
+      <h2>Projects</h2>
+      <div class="grid">
+
+        <!-- Project Card 1 -->
+        <div class="card proj col-6">
+          <div class="top">
+            <div>
+              <h3>2D Vortex Panel CFD</h3>
+              <p>Computational aerodynamics using a vortex panel method in Python.</p>
+            </div>
+            <div class="meta">
+              <span class="badge">Python</span>
+              <span class="badge">Aero</span>
+              <span class="badge">Numerical</span>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="linkbtn" href="#" target="_blank" rel="noreferrer">GitHub Repo</a>
+            <a class="linkbtn" href="#" target="_blank" rel="noreferrer">Demo / Video</a>
+            <a class="linkbtn" href="#" target="_blank" rel="noreferrer">Report</a>
+          </div>
+        </div>
+
+        <!-- Project Card 2 -->
+        <div class="card proj col-6">
+          <div class="top">
+            <div>
+              <h3>Water Level Detection System</h3>
+              <p>Threshold detection + control logic for practical sensing use cases.</p>
+            </div>
+            <div class="meta">
+              <span class="badge">Electronics</span>
+              <span class="badge">Prototyping</span>
+              <span class="badge">Testing</span>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="linkbtn" href="#" target="_blank" rel="noreferrer">GitHub Repo</a>
+            <a class="linkbtn" href="#" target="_blank" rel="noreferrer">Circuit / Photos</a>
+            <a class="linkbtn" href="#" target="_blank" rel="noreferrer">Build Notes</a>
+          </div>
+        </div>
+
+        <!-- Add more projects by copying a card -->
+        <div class="card proj col-12">
+          <div class="top">
+            <div>
+              <h3>Future Project (Placeholder)</h3>
+              <p>Copy this card to add more projects. We can also create a dedicated page per project later.</p>
+            </div>
+            <div class="meta">
+              <span class="badge">Coming Soon</span>
+            </div>
+          </div>
+          <div class="actions">
+            <a class="linkbtn" href="#contact">Ask me about it</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- EXPERIENCE -->
+    <div class="section" id="experience">
+      <h2>Experience</h2>
+      <div class="grid">
+        <div class="card box col-6">
+          <div style="font-weight:800;margin-bottom:6px">Founder & President — Apex Kart Engineering Club</div>
+          <div class="muted">Leadership · Engineering planning · Team coordination</div>
+          <div class="muted" style="margin-top:10px;font-size:14px">
+            Building a student engineering team focused on kart design, data-driven performance, and competition-oriented development.
+          </div>
+        </div>
+
+        <div class="card box col-6">
+          <div style="font-weight:800;margin-bottom:6px">Coursework / Research (Example)</div>
+          <div class="muted">Computational methods · Modeling · Labs</div>
+          <div class="muted" style="margin-top:10px;font-size:14px">
+            Add your lab / research / campus job here. We can format it like a real resume section.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTACT -->
+    <div class="section" id="contact">
+      <h2>Contact</h2>
+      <div class="grid">
+        <div class="card box col-12">
+          <div class="muted">Email</div>
+          <div style="font-weight:800;font-size:16px;margin-top:4px">your@email.com</div>
+
+          <div class="muted" style="margin-top:14px">Links</div>
+          <div class="actions" style="margin-top:10px">
+            <a class="linkbtn" href="https://github.com/Jackie-wang1209" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="linkbtn" href="#" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a class="linkbtn" href="#" target="_blank" rel="noreferrer">Resume (PDF)</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      © <span id="year"></span> Jackie Wang · Built with GitHub Pages
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
